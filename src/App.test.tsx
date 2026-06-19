@@ -15,5 +15,10 @@ describe('App', () => {
     expect(screen.getByText('Riverfront Apartments')).toBeInTheDocument();
     expect(screen.getByText('Heritage Gold Coin')).toBeInTheDocument();
     expect(screen.getByText(/next launch milestones/i)).toBeInTheDocument();
+    expect(screen.getByText(/source repository/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /open on github/i })).toHaveAttribute(
+      'href',
+      'https://github.com/softkomsolutions-cell/Token-repository',
+    );
   });
 });

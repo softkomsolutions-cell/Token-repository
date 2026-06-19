@@ -5,6 +5,8 @@ property funding coins with collectible trading coins. The first app baseline in
 featured token listing cards, marketplace metrics, recent activity, and launch milestones
 that can grow into deal rooms, onboarding, and trading workflows.
 
+Source repository: <https://github.com/softkomsolutions-cell/Token-repository>
+
 ## Tech stack
 
 - React 19

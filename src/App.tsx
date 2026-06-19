@@ -1,3 +1,5 @@
+import { githubRepository } from './repository';
+
 type TokenListing = {
   title: string;
   symbol: string;
@@ -71,7 +73,11 @@ function App() {
         <div className="nav-links">
           <a href="#market">Market</a>
           <a href="#activity">Activity</a>
+          <a href="#repository">Repository</a>
           <a href="#launch">Launch plan</a>
+          <a href={githubRepository.url} rel="noreferrer" target="_blank">
+            GitHub
+          </a>
         </div>
       </nav>
 
@@ -89,6 +95,9 @@ function App() {
             </a>
             <a className="secondary-action" href="#launch">
               Review launch plan
+            </a>
+            <a className="secondary-action" href={githubRepository.url} rel="noreferrer" target="_blank">
+              Open GitHub repository
             </a>
           </div>
         </div>
@@ -179,6 +188,32 @@ function App() {
             <li>Add investor onboarding, wallet connection, and eligibility checks.</li>
             <li>Model trading flows with order history, disclosures, and settlement status.</li>
           </ol>
+        </article>
+
+        <article className="panel repository-panel" id="repository">
+          <p className="eyebrow">GitHub connected</p>
+          <h2>Source repository</h2>
+          <p>
+            The app is connected to the GitHub repository where source code, pull requests, and
+            future issues can be managed.
+          </p>
+          <dl className="repository-details">
+            <div>
+              <dt>Owner</dt>
+              <dd>{githubRepository.owner}</dd>
+            </div>
+            <div>
+              <dt>Repository</dt>
+              <dd>{githubRepository.name}</dd>
+            </div>
+            <div>
+              <dt>Default branch</dt>
+              <dd>{githubRepository.defaultBranch}</dd>
+            </div>
+          </dl>
+          <a className="repository-link" href={githubRepository.url} rel="noreferrer" target="_blank">
+            Open on GitHub
+          </a>
         </article>
       </section>
     </main>
