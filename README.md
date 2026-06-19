@@ -7,6 +7,10 @@ that can grow into deal rooms, onboarding, and trading workflows.
 
 Source repository: <https://github.com/softkomsolutions-cell/Token-repository>
 
+The repository panel reads public metadata from the GitHub REST API so the app can show
+live source status such as stars, forks, visibility, open issues or pull requests, and the
+latest push time.
+
 ## Tech stack
 
 - React 19

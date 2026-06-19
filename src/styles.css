@@ -391,18 +391,46 @@ dd {
   margin: 22px 0;
 }
 
+.repository-live-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
 .repository-details div {
   border-radius: 18px;
   padding: 14px;
   background: rgba(23, 32, 50, 0.06);
 }
 
+.repository-live-stats div {
+  border: 1px solid rgba(23, 32, 50, 0.08);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.52);
+}
+
 .repository-details dt {
+  color: #7a8495;
+}
+
+.repository-live-stats dt {
   color: #7a8495;
 }
 
 .repository-details dd {
   overflow-wrap: anywhere;
+}
+
+.repository-live-stats dd {
+  overflow-wrap: anywhere;
+}
+
+.repository-error {
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(138, 93, 22, 0.1);
 }
 
 .repository-link {
@@ -461,7 +489,8 @@ dd {
   }
 
   .listing-stats,
-  .metric-grid {
+  .metric-grid,
+  .repository-live-stats {
     grid-template-columns: 1fr;
   }
 }

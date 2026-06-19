@@ -1,4 +1,10 @@
-import { githubRepository } from './repository';
+import { useEffect, useState } from 'react';
+
+import {
+  fetchGitHubRepositoryStatus,
+  githubRepository,
+  type GitHubRepositoryStatus,
+} from './repository';
 
 type TokenListing = {
   title: string;
@@ -57,11 +63,48 @@ const activity = [
   'SSF reservation window opens after compliance review',
 ];
 
+type RepositoryStatusState =
+  | { status: 'loading' }
+  | { data: GitHubRepositoryStatus; status: 'ready' }
+  | { message: string; status: 'error' };
+
+const formatDate = (value: string) =>
+  new Intl.DateTimeFormat('en', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(new Date(value));
+
 function App() {
+  const [repositoryStatus, setRepositoryStatus] = useState<RepositoryStatusState>({
+    status: 'loading',
+  });
   const propertyCount = featuredListings.filter(
     (listing) => listing.category === 'Property funding',
   ).length;
   const collectibleCount = featuredListings.length - propertyCount;
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    fetchGitHubRepositoryStatus()
+      .then((data) => {
+        if (isCurrent) {
+          setRepositoryStatus({ data, status: 'ready' });
+        }
+      })
+      .catch((error: unknown) => {
+        if (isCurrent) {
+          setRepositoryStatus({
+            message: error instanceof Error ? error.message : 'Unable to load GitHub status',
+            status: 'error',
+          });
+        }
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   return (
     <main className="app-shell">
@@ -96,7 +139,12 @@ function App() {
             <a className="secondary-action" href="#launch">
               Review launch plan
             </a>
-            <a className="secondary-action" href={githubRepository.url} rel="noreferrer" target="_blank">
+            <a
+              className="secondary-action"
+              href={githubRepository.url}
+              rel="noreferrer"
+              target="_blank"
+            >
               Open GitHub repository
             </a>
           </div>
@@ -208,9 +256,50 @@ function App() {
             </div>
             <div>
               <dt>Default branch</dt>
-              <dd>{githubRepository.defaultBranch}</dd>
+              <dd>
+                {repositoryStatus.status === 'ready'
+                  ? repositoryStatus.data.defaultBranch
+                  : githubRepository.defaultBranch}
+              </dd>
+            </div>
+            <div>
+              <dt>Live status</dt>
+              <dd>
+                {repositoryStatus.status === 'loading' && 'Loading from GitHub'}
+                {repositoryStatus.status === 'ready' && 'Connected'}
+                {repositoryStatus.status === 'error' && 'Unavailable'}
+              </dd>
             </div>
           </dl>
+          {repositoryStatus.status === 'ready' && (
+            <dl className="repository-live-stats" aria-label="Live GitHub repository stats">
+              <div>
+                <dt>Stars</dt>
+                <dd>{repositoryStatus.data.stars}</dd>
+              </div>
+              <div>
+                <dt>Forks</dt>
+                <dd>{repositoryStatus.data.forks}</dd>
+              </div>
+              <div>
+                <dt>Issues / PRs</dt>
+                <dd>{repositoryStatus.data.openIssuesAndPullRequests}</dd>
+              </div>
+              <div>
+                <dt>Visibility</dt>
+                <dd>{repositoryStatus.data.visibility}</dd>
+              </div>
+              <div>
+                <dt>Last push</dt>
+                <dd>{formatDate(repositoryStatus.data.pushedAt)}</dd>
+              </div>
+            </dl>
+          )}
+          {repositoryStatus.status === 'error' && (
+            <p className="repository-error" role="status">
+              Live GitHub status could not be loaded. The source link is still available.
+            </p>
+          )}
           <a className="repository-link" href={githubRepository.url} rel="noreferrer" target="_blank">
             Open on GitHub
           </a>
