@@ -53,6 +53,28 @@ npm run lint
 npm run test:run
 ```
 
+## Deploying to Vercel
+
+The repository includes `vercel.json` so Vercel builds the Vite app with:
+
+- Install command: `npm install`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+To publish a preview or production deployment, connect the GitHub repository in
+Vercel and select the branch that contains the app work:
+
+```text
+cursor/initial-app-scaffold-c3f2
+```
+
+Alternatively, from an authenticated Vercel CLI session:
+
+```bash
+npx vercel deploy
+npx vercel deploy --prod
+```
+
 ## Product direction
 
 The current UI is a front-end prototype. Next implementation steps are:
