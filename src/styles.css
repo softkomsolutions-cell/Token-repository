@@ -348,6 +348,46 @@ dd {
   margin-top: 10px;
 }
 
+.document-list {
+  display: grid;
+  gap: 10px;
+}
+
+.document-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(23, 32, 50, 0.1);
+  border-radius: 20px;
+  padding: 14px;
+  background: rgba(255, 250, 240, 0.76);
+}
+
+.document-link strong,
+.document-link small {
+  display: block;
+}
+
+.document-link strong {
+  color: #172032;
+}
+
+.document-link small {
+  margin-top: 4px;
+  color: #596374;
+}
+
+.document-link > span:last-child {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #8a5d16;
+  background: rgba(208, 160, 67, 0.14);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
 .insight-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

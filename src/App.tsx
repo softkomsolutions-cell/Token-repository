@@ -16,20 +16,36 @@ type TokenListing = {
   status: 'Open' | 'Launching' | 'Trading';
   summary: string;
   perks: string[];
+  documents?: TokenDocument[];
+};
+
+type TokenDocument = {
+  title: string;
+  label: string;
+  href: string;
+  summary: string;
 };
 
 const featuredListings: TokenListing[] = [
   {
-    title: 'Riverfront Apartments',
-    symbol: 'RFA',
+    title: 'SOHO Retail Property Fund',
+    symbol: 'SRPF',
     category: 'Property funding',
-    price: '$25.00',
+    price: 'TBD',
     change: '+8.4%',
     supply: '42,000 tokens',
     status: 'Open',
     summary:
-      'Fractional exposure to a stabilized multifamily property with monthly reporting and milestone-based funding.',
-    perks: ['Income target dashboard', 'Escrow milestone tracking', 'Investor update feed'],
+      'A property funding token concept backed by a retail property fund strategy focused on active asset management and development-stage retail projects.',
+    perks: ['May 2026 prospectus', 'Retail development mandate', 'Investor update feed'],
+    documents: [
+      {
+        title: 'Property Fund Prospectus',
+        label: 'May 2026 PDF',
+        href: '/documents/property-fund-prospectus-may-2026.pdf',
+        summary: 'SOHO Property Holdings prospectus for a retail property fund.',
+      },
+    ],
   },
   {
     title: 'Heritage Gold Coin',
@@ -213,6 +229,26 @@ function App() {
                 <li key={perk}>{perk}</li>
               ))}
             </ul>
+
+            {listing.documents && (
+              <div className="document-list" aria-label={`${listing.title} documents`}>
+                {listing.documents.map((document) => (
+                  <a
+                    className="document-link"
+                    href={document.href}
+                    key={document.href}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      <strong>{document.title}</strong>
+                      <small>{document.summary}</small>
+                    </span>
+                    <span>{document.label}</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </article>
         ))}
       </section>

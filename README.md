@@ -11,6 +11,9 @@ The repository panel reads public metadata from the GitHub REST API so the app c
 live source status such as stars, forks, visibility, open issues or pull requests, and the
 latest push time.
 
+The SOHO Property Holdings retail property fund prospectus from May 2026 is included as
+a public PDF asset and linked from the property funding token card.
+
 ## Tech stack
 
 - React 19

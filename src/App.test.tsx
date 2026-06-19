@@ -35,8 +35,12 @@ describe('App', () => {
         name: /track, fund, and trade tokenized opportunities/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText('Riverfront Apartments')).toBeInTheDocument();
+    expect(screen.getByText('SOHO Retail Property Fund')).toBeInTheDocument();
     expect(screen.getByText('Heritage Gold Coin')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /property fund prospectus/i })).toHaveAttribute(
+      'href',
+      '/documents/property-fund-prospectus-may-2026.pdf',
+    );
     expect(screen.getByText(/next launch milestones/i)).toBeInTheDocument();
     expect(screen.getByText(/source repository/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /open on github/i })).toHaveAttribute(
