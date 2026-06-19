@@ -14,6 +14,10 @@ latest push time.
 The SOHO Property Holdings retail property fund prospectus from May 2026 is included as
 a public PDF asset and linked from the property funding token card.
 
+The executive RWA platform approach is captured in
+[`docs/executive-partnership-proposal.md`](docs/executive-partnership-proposal.md)
+and summarized in the app's proposal section.
+
 ## Tech stack
 
 - React 19

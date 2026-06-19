@@ -74,9 +74,41 @@ const featuredListings: TokenListing[] = [
 ];
 
 const activity = [
-  'RFA completed due diligence milestone 2 of 4',
+  'SRPF prospectus attached for property-token due diligence',
   'HGC provenance packet refreshed with new imagery',
   'SSF reservation window opens after compliance review',
+];
+
+const proposalModules = [
+  {
+    title: 'Investor Portal',
+    summary:
+      'Banking-grade dashboard for portfolio growth, secondary market values, and automated payout tracking.',
+  },
+  {
+    title: 'Asset Originator Portal',
+    summary:
+      'Secure backend for asset managers to ingest assets, upload certificates, and manage token supply.',
+  },
+  {
+    title: 'Unified AI Co-Pilot',
+    summary:
+      'Natural-language assistant for market analytics, asset valuations, and plain-English investor support.',
+  },
+];
+
+const architectureFlow = [
+  'Next.js + Tailwind frontend',
+  'Privy or Dynamic.xyz embedded wallets',
+  'Supabase relational engine',
+  'Sumsub or Persona KYC webhooks',
+  'ERC-3643 / ERC-1155 smart contracts',
+];
+
+const commercialFramework = [
+  'R30,000 strategic co-founder cash fee split across deposit and launch milestones',
+  '25% to 40% executive co-founder equity allocation framework',
+  'Asset originator setup fees, platform subscriptions, and AUM-based revenue streams',
 ];
 
 type RepositoryStatusState =
@@ -131,6 +163,7 @@ function App() {
         </a>
         <div className="nav-links">
           <a href="#market">Market</a>
+          <a href="#proposal">Proposal</a>
           <a href="#activity">Activity</a>
           <a href="#repository">Repository</a>
           <a href="#launch">Launch plan</a>
@@ -151,6 +184,9 @@ function App() {
           <div className="hero-actions">
             <a className="primary-action" href="#market">
               Explore listings
+            </a>
+            <a className="secondary-action" href="#proposal">
+              View RWA proposal
             </a>
             <a className="secondary-action" href="#launch">
               Review launch plan
@@ -251,6 +287,46 @@ function App() {
             )}
           </article>
         ))}
+      </section>
+
+      <section className="proposal-section" id="proposal">
+        <div className="proposal-copy">
+          <p className="eyebrow">Executive partnership proposal</p>
+          <h2>Next-generation real-world asset platform</h2>
+          <p>
+            The approach positions Token Repository as a cloud-to-blockchain RWA platform for
+            fractional ownership of prime real estate and high-yield collectibles such as luxury
+            shoes, Lego sets, and art.
+          </p>
+          <div className="architecture-flow" aria-label="Proposed RWA architecture flow">
+            {architectureFlow.map((step) => (
+              <span key={step}>{step}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="module-grid">
+          {proposalModules.map((module) => (
+            <article className="module-card" key={module.title}>
+              <h3>{module.title}</h3>
+              <p>{module.summary}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="commercial-panel">
+          <p className="eyebrow">Commercial model</p>
+          <h3>Hybrid cash-plus-equity framework</h3>
+          <ul className="commercial-list">
+            {commercialFramework.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <p className="proposal-note">
+            Draft proposal terms should be reviewed by qualified legal, tax, securities, and
+            compliance professionals before partner or investor use.
+          </p>
+        </div>
       </section>
 
       <section className="insight-grid">

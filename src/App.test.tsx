@@ -41,6 +41,9 @@ describe('App', () => {
       'href',
       '/documents/property-fund-prospectus-may-2026.pdf',
     );
+    expect(screen.getByText(/next-generation real-world asset platform/i)).toBeInTheDocument();
+    expect(screen.getByText('Investor Portal')).toBeInTheDocument();
+    expect(screen.getByText(/25% to 40% executive co-founder equity/i)).toBeInTheDocument();
     expect(screen.getByText(/next launch milestones/i)).toBeInTheDocument();
     expect(screen.getByText(/source repository/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /open on github/i })).toHaveAttribute(
